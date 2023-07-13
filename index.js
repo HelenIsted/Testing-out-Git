@@ -38,13 +38,18 @@ function displayWeather(response) {
     response.data.wind.speed
   );
 }
-function cityInput(event) {
-  event.preventDefault();
+
+function search(city) {
   let apiKey = "ead5bcbff0822544c11251df60c000c3";
-  let city = document.querySelector("#city-input").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
 }
+function cityInput(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  search(city);
+}
+search("warrington");
 
 //button
 let searchButton = document.querySelector("#pressButton");
