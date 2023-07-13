@@ -14,6 +14,16 @@
   color: #6a7283;
   background: #fff;
 }
+#currentLocation {
+  color: #fff;
+  background: #6a7283;
+  border: 1px solid #6a7283;
+  border-radius: 4px;
+}
+#currentLocation:hover {
+  color: #6a7283;
+  background: #fff;
+}
 button {
   display: inline;
   margin: 0;

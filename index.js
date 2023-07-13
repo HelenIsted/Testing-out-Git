@@ -24,7 +24,6 @@ currentDate.innerHTML = `${currentTime}`;
 
 //Search Bar
 function displayWeather(response) {
-  console.log(response.data);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#tempNow").innerHTML = Math.round(
     response.data.main.temp
@@ -49,7 +48,20 @@ function cityInput(event) {
   let city = document.querySelector("#city-input").value;
   search(city);
 }
-search("warrington");
+
+function searchCurrent(position) {
+  let apiKey = "ead5bcbff0822544c11251df60c000c3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function findLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchCurrent);
+}
+
+let currentLocationUser = document.querySelector("#currentLocation");
+currentLocationUser.addEventListener("click", findLocation);
 
 //button
 let searchButton = document.querySelector("#pressButton");
@@ -74,3 +86,5 @@ function farenheit(event) {
 }
 let farenheitButton = document.querySelector("#farenheit");
 farenheitButton.addEventListener("click", farenheit);
+
+search("warrington");
